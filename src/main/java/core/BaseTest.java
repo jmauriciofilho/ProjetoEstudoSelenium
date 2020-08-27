@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import pages.LoginPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,12 +17,17 @@ import static core.DriverFactory.killDriver;
 
 public class BaseTest {
 
+    private LoginPage loginPage = new LoginPage();
+
     @Rule
-    private TestName testName = new TestName();
+    public TestName testName = new TestName();
 
     @Before
     public void incializa(){
-
+        loginPage.acessarTelaInicial();
+        loginPage.setEmail("mauricio@email.com");
+        loginPage.setSenha("123456");
+        loginPage.entrar();
     }
 
     @After
